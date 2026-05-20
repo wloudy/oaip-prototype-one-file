@@ -1,0 +1,2254 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Герои Великой Отечественной Войны — Калмыкия тур</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%238D6E63'/%3E%3Cstop offset='100%25' style='stop-color:%235D4037'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='60' cy='60' r='56' fill='url(%23g)' stroke='%23D7CCC8' stroke-width='3'/%3E%3Cpath fill='%23D7CCC8' d='M60 22 L72 48 H88 L76 60 L80 86 L60 72 L40 86 L44 60 L32 48 H48 Z' opacity='0.95'/%3E%3Crect x='54' y='78' width='12' height='18' rx='2' fill='%233E2723'/%3E%3Ctext x='60' y='108' text-anchor='middle' font-family='Georgia,serif' font-size='9' fill='%23EFEBE9'%3E1941-1945%3C/text%3E%3C/svg%3E" type="image/svg+xml">
+  <style>
+/* Кофейная палитра + тёмная/светлая тема */
+:root {
+  --coffee-dark: #2c1810;
+  --coffee-brown: #4e342e;
+  --coffee-medium: #6d4c41;
+  --coffee-light: #8d6e63;
+  --coffee-cream: #d7ccc8;
+  --coffee-milk: #efebe9;
+  --coffee-accent: #a1887f;
+  --coffee-gold: #bcaaa4;
+  --hero-red: #8b3a3a;
+  --success: #5d8a6b;
+  --error: #c45c5c;
+  --warning: #b8860b;
+
+  --bg-primary: var(--coffee-dark);
+  --bg-secondary: #3e2723;
+  --bg-card: rgba(62, 39, 35, 0.85);
+  --text-primary: var(--coffee-milk);
+  --text-secondary: var(--coffee-cream);
+  --text-muted: #a1887f;
+  --border: rgba(188, 170, 164, 0.25);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --header-bg: rgba(44, 24, 16, 0.92);
+  --input-bg: rgba(0, 0, 0, 0.25);
+  --overlay: rgba(44, 24, 16, 0.7);
+}
+
+[data-theme="light"] {
+  --bg-primary: #faf6f3;
+  --bg-secondary: #efebe9;
+  --bg-card: #ffffff;
+  --text-primary: #2c1810;
+  --text-secondary: #4e342e;
+  --text-muted: #6d4c41;
+  --border: rgba(78, 52, 46, 0.15);
+  --shadow: 0 8px 32px rgba(78, 52, 46, 0.12);
+  --header-bg: rgba(250, 246, 243, 0.95);
+  --input-bg: #fff;
+  --overlay: rgba(250, 246, 243, 0.85);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30h60M30 0v60' stroke='%238d6e63' stroke-opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: -1;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--coffee-gold);
+  text-decoration: none;
+  transition: color 0.25s, opacity 0.25s;
+}
+
+a:hover {
+  color: var(--coffee-cream);
+}
+
+[data-theme="light"] a:hover {
+  color: var(--coffee-brown);
+}
+
+.container {
+  width: min(1200px, 92vw);
+  margin: 0 auto;
+}
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--header-bg);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  animation: slideDown 0.6s ease;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 4vw;
+  flex-wrap: wrap;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-primary);
+}
+
+.logo-link img {
+  width: 52px;
+  height: 52px;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+  transition: transform 0.4s ease;
+}
+
+.logo-link:hover img {
+  transform: rotate(-5deg) scale(1.05);
+}
+
+.logo-text {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.logo-sub {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.nav-toggle {
+  display: none;
+  background: var(--coffee-medium);
+  border: none;
+  color: var(--coffee-milk);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.25rem;
+}
+
+.main-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  list-style: none;
+  align-items: center;
+}
+
+.main-nav a {
+  font-size: 0.9rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+  position: relative;
+}
+
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--hero-red);
+  transition: width 0.3s, left 0.3s;
+}
+
+.main-nav a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.theme-toggle {
+  background: var(--coffee-medium);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 0.4rem 0.75rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.05);
+  background: var(--coffee-light);
+}
+
+/* Hero / sections */
+.section {
+  padding: 4rem 0;
+  position: relative;
+}
+
+.section-title {
+  font-family: Georgia, serif;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--hero-red), transparent);
+  margin: 0.75rem auto 0;
+}
+
+.hero-banner {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--coffee-dark) 50%, #1a0f0a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="light"] .hero-banner {
+  background: linear-gradient(135deg, var(--coffee-cream) 0%, var(--coffee-milk) 60%, #fff 100%);
+}
+
+.hero-banner::before {
+  content: "★";
+  position: absolute;
+  font-size: 20rem;
+  opacity: 0.03;
+  right: -5%;
+  top: 10%;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.03; transform: scale(1); }
+  50% { opacity: 0.06; transform: scale(1.02); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero-content h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  margin-bottom: 1rem;
+  animation: fadeUp 0.8s ease;
+}
+
+.hero-content p {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--hero-red), #6d2a2a);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(139, 58, 58, 0.4);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(139, 58, 58, 0.5);
+}
+
+.btn-secondary {
+  background: var(--coffee-medium);
+  color: var(--coffee-milk);
+  border: 1px solid var(--border);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Slider */
+.slider {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide {
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--bg-card);
+}
+
+.slide-image {
+  min-height: 280px;
+  background: var(--coffee-brown);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.slide-image img,
+.slide-image svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide-body {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slide-body h3 {
+  font-family: Georgia, serif;
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.slider-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.slider-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--coffee-accent);
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 1.25rem;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.slider-btn:hover {
+  background: var(--coffee-medium);
+  transform: scale(1.1);
+}
+
+.slider-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.slider-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--coffee-accent);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.slider-dot.active {
+  background: var(--hero-red);
+  border-color: var(--hero-red);
+  transform: scale(1.2);
+}
+
+/* Cards grid - 3 columns */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.hero-card {
+  background: var(--bg-card);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: transform 0.35s, box-shadow 0.35s;
+  animation: cardIn 0.6s ease both;
+}
+
+.hero-card:nth-child(2) { animation-delay: 0.1s; }
+.hero-card:nth-child(3) { animation-delay: 0.2s; }
+.hero-card:nth-child(4) { animation-delay: 0.3s; }
+.hero-card:nth-child(5) { animation-delay: 0.4s; }
+.hero-card:nth-child(6) { animation-delay: 0.5s; }
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+}
+
+.hero-card-img {
+  height: 160px;
+  background: linear-gradient(135deg, var(--coffee-medium), var(--coffee-brown));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-card-body {
+  padding: 1.25rem;
+}
+
+.hero-card-body h4 {
+  font-family: Georgia, serif;
+  margin-bottom: 0.5rem;
+  color: var(--coffee-gold);
+}
+
+[data-theme="light"] .hero-card-body h4 {
+  color: var(--coffee-brown);
+}
+
+/* History block */
+.history-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.history-block ul {
+  margin: 1rem 0 0 1.25rem;
+  color: var(--text-secondary);
+}
+
+.timeline {
+  border-left: 3px solid var(--hero-red);
+  padding-left: 1.5rem;
+  margin-top: 1rem;
+}
+
+.timeline-item {
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -1.85rem;
+  top: 0.35rem;
+  width: 10px;
+  height: 10px;
+  background: var(--hero-red);
+  border-radius: 50%;
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--coffee-accent);
+  box-shadow: 0 0 0 3px rgba(161, 136, 127, 0.25);
+}
+
+.form-group input:invalid:not(:placeholder-shown) {
+  border-color: var(--error);
+}
+
+.form-hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.form-message {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  display: none;
+}
+
+.form-message.show { display: block; }
+.form-message.success { background: rgba(93, 138, 107, 0.2); border: 1px solid var(--success); color: var(--success); }
+.form-message.error { background: rgba(196, 92, 92, 0.2); border: 1px solid var(--error); color: var(--error); }
+.form-message.warning { background: rgba(184, 134, 11, 0.2); border: 1px solid var(--warning); }
+
+.checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.checkbox-row input {
+  width: auto;
+  margin-top: 0.25rem;
+}
+
+/* Search */
+.search-box {
+  display: flex;
+  gap: 0.75rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.search-box input {
+  flex: 1;
+}
+
+/* Reviews slideset */
+.reviews-slideset {
+  display: flex;
+  gap: 1rem;
+  overflow: hidden;
+  padding: 1rem 0;
+  align-items: stretch;
+}
+
+.review-card {
+  flex: 0 0 70%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  opacity: 0.5;
+  transform: scale(0.92);
+  transition: opacity 0.4s, transform 0.4s;
+}
+
+.review-card.active {
+  opacity: 1;
+  transform: scale(1);
+  flex: 0 0 75%;
+  border-color: var(--coffee-accent);
+  box-shadow: var(--shadow);
+}
+
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.review-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--coffee-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--coffee-milk);
+}
+
+.review-date {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.75rem;
+}
+
+/* Video */
+.video-wrap {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.video-wrap video {
+  width: 100%;
+  display: block;
+}
+
+/* About */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2rem;
+  align-items: start;
+}
+
+.about-image {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+/* Footer */
+.site-footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  padding: 3rem 0 1.5rem;
+  margin-top: 3rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-nav ul {
+  list-style: none;
+}
+
+.footer-nav li {
+  margin-bottom: 0.35rem;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Excursion table */
+.schedule-wrap {
+  overflow-x: auto;
+  margin: 2rem 0;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  min-width: 900px;
+}
+
+.schedule-table th,
+.schedule-table td {
+  border: 1px solid var(--border);
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.schedule-table th {
+  background: var(--coffee-brown);
+  color: var(--coffee-milk);
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.schedule-table th:first-child,
+.schedule-table td:first-child {
+  text-align: left;
+  min-width: 180px;
+  position: sticky;
+  left: 0;
+  background: var(--bg-card);
+  z-index: 1;
+  font-weight: 600;
+}
+
+.slot-cell {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  transition: transform 0.2s;
+  cursor: default;
+}
+
+.slot-cell.available {
+  background: rgba(93, 138, 107, 0.35);
+  color: var(--text-primary);
+  border: 1px solid var(--success);
+}
+
+.slot-cell.available:hover {
+  transform: scale(1.08);
+}
+
+.slot-cell.full {
+  background: rgba(139, 58, 58, 0.4);
+  color: var(--coffee-cream);
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.slot-cell.low {
+  background: rgba(184, 134, 11, 0.35);
+  border: 1px solid var(--warning);
+}
+
+.schedule-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* Registration page */
+.page-main {
+  padding: 2rem 0 4rem;
+  min-height: calc(100vh - 200px);
+}
+
+.form-panel {
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.family-block {
+  border: 1px dashed var(--border);
+  padding: 1.25rem;
+  border-radius: 10px;
+  margin: 1.5rem 0;
+  background: rgba(0,0,0,0.1);
+}
+
+[data-theme="light"] .family-block {
+  background: var(--bg-secondary);
+}
+
+.family-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.upload-zone {
+  border: 2px dashed var(--coffee-accent);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.upload-zone:hover {
+  background: rgba(161, 136, 127, 0.1);
+  border-color: var(--hero-red);
+}
+
+.age-inputs {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.age-inputs .form-group {
+  flex: 1;
+  min-width: 120px;
+}
+
+/* Route page */
+.route-map {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.route-step {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--bg-card);
+  border-radius: 10px;
+  border-left: 4px solid var(--hero-red);
+  margin-bottom: 1rem;
+  transition: transform 0.3s;
+}
+
+.route-step:hover {
+  transform: translateX(6px);
+}
+
+.step-num {
+  width: 36px;
+  height: 36px;
+  background: var(--hero-red);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.stats-bar {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+}
+
+.stat-item {
+  flex: 1;
+  min-width: 140px;
+  background: var(--bg-card);
+  padding: 1.25rem;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--hero-red);
+  font-family: Georgia, serif;
+}
+
+.stat-bar {
+  height: 8px;
+  background: var(--border);
+  border-radius: 4px;
+  margin-top: 0.75rem;
+  overflow: hidden;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--hero-red), var(--coffee-accent));
+  border-radius: 4px;
+  animation: growBar 1.2s ease forwards;
+}
+
+@keyframes growBar {
+  from { width: 0; }
+}
+
+/* Account */
+.account-info {
+  background: var(--bg-card);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  border: 1px solid var(--border);
+}
+
+.booking-form {
+  max-width: 480px;
+}
+
+/* 404 */
+.error-page {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.error-code {
+  font-size: clamp(6rem, 20vw, 12rem);
+  font-weight: 900;
+  color: var(--coffee-medium);
+  line-height: 1;
+  text-shadow: 4px 4px 0 var(--hero-red);
+  animation: shake 2s ease-in-out infinite;
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-1deg); }
+  75% { transform: rotate(1deg); }
+}
+
+/* WWII decorative stars */
+.hero-banner .star-deco {
+  position: absolute;
+  color: var(--hero-red);
+  opacity: 0.15;
+  animation: floatStar 6s ease-in-out infinite;
+  font-size: 2rem;
+  pointer-events: none;
+}
+
+@keyframes floatStar {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(10deg); }
+}
+
+/* Print route */
+@media print {
+  .site-header,
+  .site-footer,
+  .no-print,
+  .theme-toggle,
+  .nav-toggle,
+  .route-step,
+  .stats-bar,
+  aside {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .route-print-photo.print-only {
+    display: block !important;
+    filter: grayscale(100%) !important;
+    max-width: 100%;
+    margin: 1rem 0;
+  }
+  .route-print-area,
+  .route-print-area * {
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+}
+
+.print-only { display: none; }
+
+/* Responsive - 4+ structural changes at 796px */
+@media (max-width: 796px) {
+  .nav-toggle { display: block; }
+
+  .main-nav {
+    display: none;
+    width: 100%;
+    order: 3;
+  }
+
+  .main-nav.open {
+    display: block;
+    animation: fadeUp 0.3s ease;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem 0;
+  }
+
+  .header-inner {
+    flex-wrap: wrap;
+  }
+
+  .slide {
+    grid-template-columns: 1fr;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .history-block,
+  .about-grid,
+  .route-map {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-banner {
+    min-height: 50vh;
+  }
+
+  .logo-sub { display: none; }
+
+  .reviews-slideset .review-card {
+    flex: 0 0 85%;
+  }
+
+  .reviews-slideset .review-card:not(.active) {
+    display: none;
+  }
+
+  .search-box {
+    flex-direction: column;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 797px) and (max-width: 1100px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1400px;
+  }
+}
+
+.page-view { display: none; }
+.page-view.active { display: block; }
+
+  </style>
+</head>
+<body>
+  <header class="site-header no-print">
+    <div class="header-inner container">
+      <a href="#" class="logo-link" data-page="home">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%238D6E63'/%3E%3Cstop offset='100%25' style='stop-color:%235D4037'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='60' cy='60' r='56' fill='url(%23g)' stroke='%23D7CCC8' stroke-width='3'/%3E%3Cpath fill='%23D7CCC8' d='M60 22 L72 48 H88 L76 60 L80 86 L60 72 L40 86 L44 60 L32 48 H48 Z' opacity='0.95'/%3E%3Crect x='54' y='78' width='12' height='18' rx='2' fill='%233E2723'/%3E%3Ctext x='60' y='108' text-anchor='middle' font-family='Georgia,serif' font-size='9' fill='%23EFEBE9'%3E1941-1945%3C/text%3E%3C/svg%3E" alt="Логотип">
+        <span class="logo-text">Герои ВОВ<span class="logo-sub">Калмыкия тур · Парк Победы</span></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Меню" aria-expanded="false">☰</button>
+      <nav class="main-nav" aria-label="Основная навигация">
+        <ul>
+          <li><a href="#" class="nav-reg" data-page="registration">Регистрация</a></li>
+          <li><a href="#" data-page="home" data-hash="#auth">Авторизация</a></li>
+          <li><a href="#" data-page="account">Личный кабинет</a></li>
+          <li><a href="#" id="logout-btn" style="display:none">Выйти</a></li>
+          <li><a href="#" data-page="home" data-hash="#about">О нас</a></li>
+          <li><a href="#" data-page="home" data-hash="#landmarks">Достопримечательности</a></li>
+          <li><a href="#" data-page="home" data-hash="#search">Поиск</a></li>
+          <li><a href="#" data-page="home" data-hash="#contacts">Контакты</a></li>
+          <li><a href="#" data-page="route">Маршрут</a></li>
+          <li><a href="#" data-page="excursion">Расписание</a></li>
+          <li><button type="button" class="theme-toggle" aria-label="Переключить тему">☀ Светлая</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div id="page-home" class="page-view active">
+<section class="hero-banner">
+    <span class="star-deco" style="left:10%;top:20%">★</span>
+    <span class="star-deco" style="right:15%;top:40%;animation-delay:1s">★</span>
+    <span class="star-deco" style="left:40%;bottom:25%;animation-delay:2s">★</span>
+    <div class="hero-content container">
+      <h1>Маршрут героев у Парка Победы</h1>
+      <p>Патриотическая экскурсия по Поклонной горе в Москве — от Монумента Победы до Триумфальной арки. 2025 — Год Защитника Отечества.</p>
+      <a href="#" data-page="route" class="btn btn-primary">Подробнее о маршруте</a>
+    </div>
+  </section>
+
+  <section class="section container" id="slider">
+    <h2 class="section-title">Памятные места</h2>
+    <div class="slider" role="region" aria-label="Слайдер достопримечательностей">
+      <div class="slider-track">
+        <article class="slide">
+          <div class="slide-image"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'%3E%3Crect fill='%234e342e' width='400' height='280'/%3E%3Ctext x='200' y='145' fill='%23d7ccc8' font-family='Georgia' font-size='22' text-anchor='middle'%3E%D0%9C%D0%BE%D0%BD%D1%83%D0%BC%D0%B5%D0%BD%D1%82%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D1%8B%3C/text%3E%3C/svg%3E" alt="Монумент Победы"></div>
+          <div class="slide-body">
+            <h3>Монумент Победы</h3>
+            <p>Главный символ Парка Победы высотой 141,8 м — по числу дней войны. Смотровая площадка и музей у подножия.</p>
+            <a href="#" class="btn btn-secondary" data-page="route">Подробнее</a>
+          </div>
+        </article>
+        <article class="slide">
+          <div class="slide-image"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'%3E%3Crect fill='%234e342e' width='400' height='280'/%3E%3Ctext x='200' y='145' fill='%23d7ccc8' font-family='Georgia' font-size='22' text-anchor='middle'%3E%D0%9C%D0%BE%D0%BD%D1%83%D0%BC%D0%B5%D0%BD%D1%82%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D1%8B%3C/text%3E%3C/svg%3E" alt="Музей Победы" style="filter:hue-rotate(30deg)"></div>
+          <div class="slide-body">
+            <h3>Музей Великой Отечественной войны</h3>
+            <p>Крупнейший военно-исторический музей России: залы, диорамы, техника и Зал Славы.</p>
+            <a href="#" class="btn btn-secondary" data-page="route">Подробнее</a>
+          </div>
+        </article>
+        <article class="slide">
+          <div class="slide-image"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'%3E%3Crect fill='%234e342e' width='400' height='280'/%3E%3Ctext x='200' y='145' fill='%23d7ccc8' font-family='Georgia' font-size='22' text-anchor='middle'%3E%D0%9C%D0%BE%D0%BD%D1%83%D0%BC%D0%B5%D0%BD%D1%82%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D1%8B%3C/text%3E%3C/svg%3E" alt="Храм ВС РФ" style="filter:hue-rotate(60deg)"></div>
+          <div class="slide-body">
+            <h3>Главный храм ВС РФ</h3>
+            <p>Православный храм в честь воинов — часть мемориального ансамбля на Поклонной горе.</p>
+            <a href="#" class="btn btn-secondary" data-page="route">Подробнее</a>
+          </div>
+        </article>
+      </div>
+      <div class="slider-controls">
+        <button type="button" class="slider-btn slider-prev" aria-label="Предыдущий слайд">‹</button>
+        <div class="slider-dots">
+          <button type="button" class="slider-dot active" aria-label="Слайд 1"></button>
+          <button type="button" class="slider-dot" aria-label="Слайд 2"></button>
+          <button type="button" class="slider-dot" aria-label="Слайд 3"></button>
+        </div>
+        <button type="button" class="slider-btn slider-next" aria-label="Следующий слайд">›</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="history">
+    <div class="container history-block">
+      <div>
+        <h2 class="section-title" style="text-align:left">История и память</h2>
+        <p>Согласно <strong>Федеральному закону № 5-ФЗ «Об увековечении Победы»</strong>, мемориалы Великой Отечественной войны являются объектами культурного наследия народов России. Парк Победы на Поклонной горе открыт в 1995 году к 50-летию Победы; центральный монумент символизирует 1418 дней и ночей войны.</p>
+        <p>Элиста в годы войны отправила на фронт тысячи земляков; улицы города названы в честь Героев Советского Союза. Наш маршрут связывает память Калмыкии с общероссийским мемориалом в столице.</p>
+        <div class="timeline">
+          <div class="timeline-item"><strong>1941–1945</strong> — Великая Отечественная война</div>
+          <div class="timeline-item"><strong>1995</strong> — открытие Парка Победы в Москве</div>
+          <div class="timeline-item"><strong>2025</strong> — Год Защитника Отечества в России</div>
+        </div>
+      </div>
+      <div>
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%236d4c41' width='400' height='300'/%3E%3Ccircle cx='200' cy='120' r='50' fill='%238d6e63'/%3E%3Ctext x='200' y='220' fill='%23efebe9' font-family='Georgia' font-size='18' text-anchor='middle'%3E%D0%9A%D0%B0%D0%BB%D0%BC%D1%8B%D0%BA%D0%B8%D1%8F%20%D1%82%D1%83%D1%80%3C/text%3E%3C/svg%3E" alt="Парк Победы" style="border-radius:12px;border:1px solid var(--border)">
+      </div>
+    </div>
+  </section>
+
+  <section class="section container" id="auth">
+    <h2 class="section-title">Авторизация</h2>
+    <form id="login-form" class="form-panel" style="max-width:420px;margin:0 auto" novalidate>
+      <div class="form-group">
+        <label for="login-email">E-mail</label>
+        <input type="email" id="login-email" name="email" required placeholder="family@cosmos.ru" autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label for="login-password">Пароль</label>
+        <input type="password" id="login-password" name="password" required placeholder="Пароль" autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Войти</button>
+      <p style="margin-top:1rem;text-align:center"><a href="#" data-page="registration">Регистрация</a> · <a href="#">Восстановить пароль</a></p>
+      <p class="form-hint" style="text-align:center;margin-top:0.5rem">Демо: family@cosmos.ru / Heroes2024!</p>
+      <div id="login-message" class="form-message" role="alert"></div>
+    </form>
+  </section>
+
+  <section class="section container" id="about">
+    <h2 class="section-title">О нас</h2>
+    <div class="about-grid">
+      <div>
+        <p>Туристическое агентство «Калмыкия тур» работает с 2008 года и специализируется на патриотических маршрутах Республики Калмыкия и столичных памятных мест. В 2025 году, объявленном в России Годом Защитника Отечества, мы расширили программу экскурсий и предлагаем авторский маршрут «Парк Победы на Поклонной горе» — один из крупнейших мемориальных комплексов страны, посвящённых подвигу советского народа в Великой Отечественной войне.</p>
+        <p>Наши гиды — сертифицированные экскурсоводы, прошедшие подготовку по программе Министерства культуры РФ. Мы сотрудничаем с Музеем Победы и используем материалы официальных путеводителей и публикаций фонда «Победа», чтобы рассказы о героях войны опирались на проверенные исторические источники.</p>
+        <p>Экскурсии проводятся на русском языке, доступны аудиогиды для слабовидящих. Группы до 15 человек. Запись на экскурсию — через сайт после регистрации. Жители Элисты и гостей Калмыкии могут добраться до Москвы железнодорожным транспортом; мы помогаем с рекомендациями по билетам и трансферу к месту сбора у метро «Парк Победы».</p>
+        <p>Миссия агентства — сохранять память о героях Великой Отечественной войны и делать историю доступной каждому поколению.</p>
+      </div>
+      <div class="about-image">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%236d4c41' width='400' height='300'/%3E%3Ccircle cx='200' cy='120' r='50' fill='%238d6e63'/%3E%3Ctext x='200' y='220' fill='%23efebe9' font-family='Georgia' font-size='18' text-anchor='middle'%3E%D0%9A%D0%B0%D0%BB%D0%BC%D1%8B%D0%BA%D0%B8%D1%8F%20%D1%82%D1%83%D1%80%3C/text%3E%3C/svg%3E" alt="О компании Калмыкия тур">
+      </div>
+    </div>
+  </section>
+
+  <section class="section container" id="welcome">
+    <h2 class="section-title">Приветствие организаторов</h2>
+    <div class="video-wrap">
+      <video controls poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%236d4c41' width='400' height='300'/%3E%3Ccircle cx='200' cy='120' r='50' fill='%238d6e63'/%3E%3Ctext x='200' y='220' fill='%23efebe9' font-family='Georgia' font-size='18' text-anchor='middle'%3E%D0%9A%D0%B0%D0%BB%D0%BC%D1%8B%D0%BA%D0%B8%D1%8F%20%D1%82%D1%83%D1%80%3C/text%3E%3C/svg%3E" width="800" height="450">
+        
+        <p>Видео <code>media/video/hello.mp4</code> — добавьте файл из задания. Пока доступен постер.</p>
+      </video>
+    </div>
+  </section>
+
+  <section class="section container" id="landmarks">
+    <h2 class="section-title">Достопримечательности маршрута</h2>
+    <div class="cards-grid">
+      <article class="hero-card" data-surname="победа">
+        <div class="hero-card-img"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'%3E%3Crect fill='%234e342e' width='400' height='280'/%3E%3Ctext x='200' y='145' fill='%23d7ccc8' font-family='Georgia' font-size='22' text-anchor='middle'%3E%D0%9C%D0%BE%D0%BD%D1%83%D0%BC%D0%B5%D0%BD%D1%82%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D1%8B%3C/text%3E%3C/svg%3E" alt=""></div>
+        <div class="hero-card-body">
+          <h4>Монумент Победы на Поклонной горе</h4>
+          <p><strong>Маршрут:</strong> старт экскурсии. Скульптурные композиции у стелы рассказывают о ключевых сражениях.</p>
+        </div>
+      </article>
+      <article class="hero-card" data-surname="музей">
+        <div class="hero-card-img"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'%3E%3Crect fill='%234e342e' width='400' height='280'/%3E%3Ctext x='200' y='145' fill='%23d7ccc8' font-family='Georgia' font-size='22' text-anchor='middle'%3E%D0%9C%D0%BE%D0%BD%D1%83%D0%BC%D0%B5%D0%BD%D1%82%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D1%8B%3C/text%3E%3C/svg%3E" alt="" style="filter:hue-rotate(20deg)"></div>
+        <div class="hero-card-body">
+          <h4>Музей Великой Отечественной войны</h4>
+          <p>Официальный музей Минобороны: экспозиции по годам войны, Зал Славы, военная техника под открытым небом.</p>
+        </div>
+      </article>
+      <article class="hero-card" data-surname="храм">
+        <div class="hero-card-img"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'%3E%3Crect fill='%234e342e' width='400' height='280'/%3E%3Ctext x='200' y='145' fill='%23d7ccc8' font-family='Georgia' font-size='22' text-anchor='middle'%3E%D0%9C%D0%BE%D0%BD%D1%83%D0%BC%D0%B5%D0%BD%D1%82%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D1%8B%3C/text%3E%3C/svg%3E" alt="" style="filter:hue-rotate(40deg)"></div>
+        <div class="hero-card-body">
+          <h4>Главный храм Вооружённых сил России</h4>
+          <p>Храм-памятник с мозаиками и росписями о подвиге воинов всех родов войск.</p>
+        </div>
+      </article>
+      <article class="hero-card" data-surname="аллея">
+        <div class="hero-card-img"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'%3E%3Crect fill='%234e342e' width='400' height='280'/%3E%3Ctext x='200' y='145' fill='%23d7ccc8' font-family='Georgia' font-size='22' text-anchor='middle'%3E%D0%9C%D0%BE%D0%BD%D1%83%D0%BC%D0%B5%D0%BD%D1%82%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D1%8B%3C/text%3E%3C/svg%3E" alt="" style="filter:hue-rotate(60deg)"></div>
+        <div class="hero-card-body">
+          <h4>Парковая аллея Героев</h4>
+          <p>Аллея с бюстами полководцев и героев — место для церемониальных возложений.</p>
+        </div>
+      </article>
+      <article class="hero-card" data-surname="фонтан">
+        <div class="hero-card-img"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'%3E%3Crect fill='%234e342e' width='400' height='280'/%3E%3Ctext x='200' y='145' fill='%23d7ccc8' font-family='Georgia' font-size='22' text-anchor='middle'%3E%D0%9C%D0%BE%D0%BD%D1%83%D0%BC%D0%B5%D0%BD%D1%82%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D1%8B%3C/text%3E%3C/svg%3E" alt="" style="filter:hue-rotate(80deg)"></div>
+        <div class="hero-card-body">
+          <h4>Фонтан «Слёзы горюют»</h4>
+          <p>Мемориальный фонтан в память о погибших — одна из самых трогательных точек парка.</p>
+        </div>
+      </article>
+      <article class="hero-card" data-surname="арка">
+        <div class="hero-card-img"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'%3E%3Crect fill='%234e342e' width='400' height='280'/%3E%3Ctext x='200' y='145' fill='%23d7ccc8' font-family='Georgia' font-size='22' text-anchor='middle'%3E%D0%9C%D0%BE%D0%BD%D1%83%D0%BC%D0%B5%D0%BD%D1%82%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D1%8B%3C/text%3E%3C/svg%3E" alt="" style="filter:hue-rotate(100deg)"></div>
+        <div class="hero-card-body">
+          <h4>Триумфальная арка</h4>
+          <p>Копия исторической арки в честь победы 1812 года — финал пешего маршрута.</p>
+        </div>
+      </article>
+    </div>
+    <p style="text-align:center;margin-top:2rem">
+      <a href="#" data-page="route" class="btn btn-primary">Подробнее о маршруте</a>
+      <a href="#" data-page="excursion" class="btn btn-secondary" style="margin-left:0.5rem">Расписание</a>
+    </p>
+  </section>
+
+  <section class="section container" id="search">
+    <h2 class="section-title">Поиск по маршруту</h2>
+    <form id="hero-search-form" class="search-box">
+      <input type="search" name="q" list="hero-hints" placeholder="Введите название или ключевое слово…" autocomplete="off">
+      <datalist id="hero-hints">
+        <option value="Победа">
+        <option value="Музей">
+        <option value="Храм">
+        <option value="Аллея">
+        <option value="Фонтан">
+        <option value="Арка">
+      </datalist>
+      <button type="submit" class="btn btn-primary">Поиск</button>
+    </form>
+    <p id="search-result" class="form-hint" style="text-align:center;margin-top:1rem"></p>
+  </section>
+
+  <section class="section container" id="reviews">
+    <h2 class="section-title">Отзывы</h2>
+    <div class="reviews-slideset">
+      <article class="review-card active">
+        <div class="review-author">
+          <div class="review-avatar">АС</div>
+          <div>
+            <strong>Анна Смирнова</strong>
+            <div class="review-date">15.03.2024</div>
+          </div>
+        </div>
+        <p>Экскурсия по Парку Победы превзошла ожидания. Гид рассказал о каждом монументе с душой, дети были в восторге от Музея Победы.</p>
+        <a href="#" data-page="route" class="btn btn-secondary" style="margin-top:1rem">О маршруте</a>
+      </article>
+      <article class="review-card">
+        <div class="review-author">
+          <div class="review-avatar">ДК</div>
+          <div>
+            <strong>Дмитрий Козлов</strong>
+            <div class="review-date">22.04.2024</div>
+          </div>
+        </div>
+        <p>Очень познавательно! Узнали про 1418 дней войны у стелы. Рекомендую всем, кто хочет понять историю не по учебнику.</p>
+        <a href="#" data-page="route" class="btn btn-secondary" style="margin-top:1rem">О маршруте</a>
+      </article>
+      <article class="review-card">
+        <div class="review-author">
+          <div class="review-avatar">ЕВ</div>
+          <div>
+            <strong>Елена Волкова</strong>
+            <div class="review-date">08.05.2024</div>
+          </div>
+        </div>
+        <p>В День Победы ходили всей семьёй. Организация на высоте, время слотов удобное. Обязательно запишемся снова.</p>
+        <a href="#" data-page="route" class="btn btn-secondary" style="margin-top:1rem">О маршруте</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section container" id="subscribe">
+    <h2 class="section-title">Подписка на новости</h2>
+    <form id="subscribe-form" class="form-panel" style="max-width:480px;margin:0 auto">
+      <div class="form-group">
+        <label for="sub-email">Email</label>
+        <input type="email" id="sub-email" name="email" required placeholder="your@email.ru">
+      </div>
+      <div class="form-group checkbox-row">
+        <input type="checkbox" id="sub-consent" name="consent" required>
+        <label for="sub-consent">Согласен на обработку персональных данных</label>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Подписаться</button>
+      <div id="subscribe-message" class="form-message" role="alert"></div>
+    </form>
+  </section>
+  </div>
+
+  <div id="page-registration" class="page-view">
+    <main class="page-main container">
+
+    <h1 class="section-title">Регистрация на сайте</h1>
+
+    <form id="registration-form" class="form-panel" novalidate>
+      <div class="form-group">
+        <label for="email">E-mail *</label>
+        <input type="email" id="email" name="email" required placeholder="name@example.ru" autocomplete="email">
+        <p id="email-hint" class="form-hint"></p>
+      </div>
+      <div class="form-group">
+        <label for="firstName">Имя *</label>
+        <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Фамилия *</label>
+        <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
+      </div>
+      <div class="age-inputs">
+        <div class="form-group">
+          <label for="ageNumber">Возраст (число) *</label>
+          <input type="number" id="ageNumber" name="ageNumber" min="1" max="120" placeholder="35">
+        </div>
+        <div class="form-group">
+          <label for="ageRange">Возраст (список) *</label>
+          <input type="range" id="ageRange" name="ageRange" min="18" max="90" value="35" list="age-marks">
+          <datalist id="age-marks">
+            <option value="18"><option value="30"><option value="45"><option value="60"><option value="90">
+          </datalist>
+          <span class="form-hint">Ползунок: <output id="age-range-out">35</output> лет</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <span>Пол *</span>
+        <div style="display:flex;gap:1.5rem;margin-top:0.5rem">
+          <label class="checkbox-row"><input type="radio" name="gender" value="male" required> мужской</label>
+          <label class="checkbox-row"><input type="radio" name="gender" value="female"> женский</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Пароль *</label>
+        <input type="password" id="password" name="password" required minlength="6" autocomplete="new-password">
+      </div>
+      <div class="form-group">
+        <label for="password2">Повтор пароля *</label>
+        <input type="password" id="password2" name="password2" required autocomplete="new-password">
+      </div>
+      <div class="form-group">
+        <label>Семейная фотография *</label>
+        <label class="upload-zone" for="photo">
+          <input type="file" id="photo" name="photo" accept="image/*" hidden>
+          <span>📷 Нажмите для загрузки или перетащите файл</span>
+        </label>
+      </div>
+
+      <fieldset class="family-block">
+        <legend>Члены семьи (демо-поля)</legend>
+        <div class="form-group">
+          <label>Фамилия</label>
+          <input type="text" name="familyLast" placeholder="Иванова">
+        </div>
+        <div class="form-group">
+          <label>Имя</label>
+          <input type="text" name="familyFirst" placeholder="Мария">
+        </div>
+        <div class="form-group">
+          <label>Возраст</label>
+          <input type="number" name="familyAge" min="0" max="120">
+        </div>
+        <div class="form-group">
+          <label>Пол</label>
+          <select name="familyGender">
+            <option value="">— выберите —</option>
+            <option value="male">мужской</option>
+            <option value="female">женский</option>
+          </select>
+        </div>
+        <div class="family-actions">
+          <button type="button" class="btn btn-secondary" disabled title="Добавление не реализовано по заданию">+ Добавить члена семьи</button>
+          <button type="button" class="btn btn-secondary" disabled>− Удалить</button>
+        </div>
+      </fieldset>
+
+      <div class="form-group checkbox-row">
+        <input type="checkbox" id="pd-consent" name="pdConsent" required>
+        <label for="pd-consent">Согласен на обработку персональных данных *</label>
+      </div>
+
+      <button type="submit" id="register-btn" class="btn btn-primary" style="width:100%" disabled>Зарегистрироваться</button>
+
+      <div id="reg-message" class="form-message" role="alert"></div>
+
+      <details style="margin-top:2rem" class="no-print">
+        <summary style="cursor:pointer;color:var(--text-muted)">Примеры сообщений (для отчёта)</summary>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:1rem">
+          <button type="button" class="btn btn-secondary" onclick="showValidationDemo('success')">Корректные данные</button>
+          <button type="button" class="btn btn-secondary" onclick="showValidationDemo('error')">Некорректные</button>
+          <button type="button" class="btn btn-secondary" onclick="showValidationDemo('empty')">Не заполнено</button>
+        </div>
+      </details>
+    </form>
+  
+    </main>
+  </div>
+
+  <div id="page-excursion" class="page-view">
+    <main class="page-main container">
+
+    <h1 class="section-title">Расписание экскурсий</h1>
+    <p style="text-align:center;color:var(--text-secondary);max-width:720px;margin:0 auto 2rem">
+      Парк Победы, 8 июля 2024. В ячейках — число свободных мест. Квадратные слоты 48×48 px.
+    </p>
+
+    <div class="schedule-legend">
+      <span class="legend-item"><span class="slot-cell available" style="width:24px;height:24px;min-width:24px;min-height:24px">5</span> Есть места</span>
+      <span class="legend-item"><span class="slot-cell low" style="width:24px;height:24px;min-width:24px;min-height:24px">2</span> Мало мест</span>
+      <span class="legend-item"><span class="slot-cell full" style="width:24px;height:24px;min-width:24px;min-height:24px">—</span> Регистрация завершена</span>
+    </div>
+
+    <div class="schedule-wrap">
+      <table class="schedule-table" aria-label="Расписание экскурсий">
+        <thead>
+          <tr>
+            <th>Экскурсия</th>
+            <th>9:00–10:00</th>
+            <th>10:00–11:00</th>
+            <th>11:00–12:00</th>
+            <th>12:00–13:00</th>
+            <th>13:00–14:00</th>
+            <th>14:00–15:00</th>
+            <th>15:00–16:00</th>
+            <th>16:00–17:00</th>
+            <th>17:00–18:00</th>
+            <th>18:00–19:00</th>
+            <th>19:00–20:00</th>
+            <th>20:00–21:00</th>
+            <th>21:00–22:00</th>
+          </tr>
+        </thead>
+        <tbody id="schedule-body"></tbody>
+      </table>
+    </div>
+
+    <p style="text-align:center;margin-top:2rem">
+      <a href="#" data-page="account" class="btn btn-primary">Записаться в личном кабинете</a>
+    </p>
+  
+    </main>
+  </div>
+
+  <div id="page-account" class="page-view">
+    <main class="page-main container">
+
+    <h1 class="section-title">Личный кабинет</h1>
+
+    <div id="account-user-info" class="account-info"></div>
+
+    <h2 style="font-family:Georgia;margin-bottom:1rem">Запись на экскурсию</h2>
+    <form id="booking-form" class="form-panel booking-form">
+      <div class="form-group">
+        <label for="excursion">Экскурсия</label>
+        <select id="excursion" name="excursion" required>
+          <option value="">— выберите —</option>
+          <option>Монумент Победы на Поклонной горе</option>
+          <option>Музей Великой Отечественной войны</option>
+          <option>Главный храм Вооружённых сил России</option>
+          <option>Парковая аллея Героев</option>
+          <option>Фонтан «Слёзы горюют»</option>
+          <option>Триумфальная арка</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="date">Дата</label>
+        <input type="date" id="date" name="date" value="2024-07-08" min="2024-07-08" max="2024-07-08" required>
+        <p class="form-hint">Доступна только дата: 8 июля 2024 г.</p>
+      </div>
+      <div class="form-group">
+        <label for="time">Время</label>
+        <select id="time" name="time" required>
+          <option value="">— выберите —</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="count">Количество человек</label>
+        <input type="number" id="count" name="count" min="1" max="15" value="1" required>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Записаться на экскурсию</button>
+      <div id="booking-message" class="form-message" role="alert"></div>
+    </form>
+  
+    </main>
+  </div>
+
+  <div id="page-route" class="page-view">
+    <main class="page-main container route-print-area">
+
+    <h1 class="section-title no-print">Маршрут «Парк Победы — герои Великой Отечественной войны»</h1>
+    <p class="no-print" style="text-align:center;margin-bottom:2rem;color:var(--text-secondary)">
+      Пеший маршрут ~4 км по Поклонной горе. Сбор у метро «Парк Победы». Длительность 3–4 часа.
+    </p>
+
+    <div class="stats-bar no-print">
+      <div class="stat-item">
+        <div class="stat-value" data-visitors>142</div>
+        <div>Записались на экскурсию</div>
+        <div class="stat-bar"><div class="stat-bar-fill" style="width:71%"></div></div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">6</div>
+        <div>Остановок</div>
+        <div class="stat-bar"><div class="stat-bar-fill" style="width:100%"></div></div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">15</div>
+        <div>Мест в группе</div>
+        <div class="stat-bar"><div class="stat-bar-fill" style="width:45%"></div></div>
+      </div>
+    </div>
+
+    <div class="route-map">
+      <div>
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'%3E%3Crect fill='%234e342e' width='400' height='280'/%3E%3Ctext x='200' y='145' fill='%23d7ccc8' font-family='Georgia' font-size='22' text-anchor='middle'%3E%D0%9C%D0%BE%D0%BD%D1%83%D0%BC%D0%B5%D0%BD%D1%82%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D1%8B%3C/text%3E%3C/svg%3E" alt="Карта маршрута" class="route-print-photo no-print" style="border-radius:12px;margin-bottom:1.5rem">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'%3E%3Crect fill='%234e342e' width='400' height='280'/%3E%3Ctext x='200' y='145' fill='%23d7ccc8' font-family='Georgia' font-size='22' text-anchor='middle'%3E%D0%9C%D0%BE%D0%BD%D1%83%D0%BC%D0%B5%D0%BD%D1%82%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D1%8B%3C/text%3E%3C/svg%3E" alt="Маршрут" class="route-print-photo print-only">
+
+        <article class="route-step">
+          <span class="step-num">1</span>
+          <div>
+            <h3>Монумент Победы</h3>
+            <p>Старт у подножия стелы. Обзор ансамбля, 1418 ступеней, скульптурные группы «Сталинград», «Курская дуга».</p>
+          </div>
+        </article>
+        <article class="route-step">
+          <span class="step-num">2</span>
+          <div>
+            <h3>Музей Великой Отечественной войны</h3>
+            <p>Экскурсия по залу «Путь к Победе», Зал Славы, открытая экспозиция техники.</p>
+          </div>
+        </article>
+        <article class="route-step">
+          <span class="step-num">3</span>
+          <div>
+            <h3>Главный храм ВС РФ</h3>
+            <p>Осмотр фасада и интерьера (при открытом доступе), рассказ о воинской традиции.</p>
+          </div>
+        </article>
+        <article class="route-step">
+          <span class="step-num">4</span>
+          <div>
+            <h3>Парковая аллея Героев</h3>
+            <p>Бюсты Маршалов Советского Союза и героев фронта — связь с улицами Элисты.</p>
+          </div>
+        </article>
+        <article class="route-step">
+          <span class="step-num">5</span>
+          <div>
+            <h3>Фонтан «Слёзы горюют»</h3>
+            <p>Минута молчания у мемориального фонтана.</p>
+          </div>
+        </article>
+        <article class="route-step">
+          <span class="step-num">6</span>
+          <div>
+            <h3>Триумфальная арка</h3>
+            <p>Финал маршрута, общее фото группы.</p>
+          </div>
+        </article>
+      </div>
+      <aside class="no-print">
+        <div class="form-panel">
+          <h3 style="font-family:Georgia;margin-bottom:1rem">Полезно знать</h3>
+          <ul style="margin-left:1.25rem;color:var(--text-secondary)">
+            <li>Удобная обувь для длинной прогулки</li>
+            <li>Документ для льгот в музее</li>
+            <li>Вода, головной убор летом</li>
+          </ul>
+          <a href="#" data-page="excursion" class="btn btn-primary" style="margin-top:1.5rem;display:inline-block">Расписание</a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="print-only" style="margin-top:2rem">
+      <h2>Маршрут: Парк Победы — герои ВОВ</h2>
+      <p><em>Отзыв:</em> «Экскурсия по Парку Победы превзошла ожидания. Гид рассказал о каждом монументе с душой.» — Анна Смирнова, 15.03.2024</p>
+    </div>
+  
+    </main>
+  </div>
+
+  <div id="page-error404" class="page-view">
+    <main class="error-page container">
+
+    <p class="error-code" aria-hidden="true">404</p>
+    <h1 class="section-title">Встреча не найдена</h1>
+    <p style="max-width:480px;color:var(--text-secondary);margin-bottom:2rem">
+      Запрошенная страница не существует или была перемещена. Вернитесь на главную или выберите раздел в меню.
+    </p>
+    <a href="#" data-page="home" class="btn btn-primary">На главную</a>
+    <a href="#" data-page="route" class="btn btn-secondary" style="margin-left:0.5rem">Маршрут</a>
+  
+    </main>
+  </div>
+
+
+  <footer class="site-footer no-print" id="contacts">
+    <div class="container footer-grid">
+      <div>
+        <strong>Контакты</strong>
+        <p style="margin-top:0.75rem"><a href="tel:+74842234567">+7 (4842) 23-45-67</a></p>
+        <p><a href="mailto:family@cosmos.ru">family@cosmos.ru</a></p>
+      </div>
+      <nav class="footer-nav" aria-label="Навигация в подвале">
+        <strong>Навигация</strong>
+        <ul>
+          <li><a href="#" data-page="home">Главная</a></li>
+          <li><a href="#" data-page="home" data-set-theme="light">Главная-светлая</a></li>
+          <li><a href="#" data-page="registration">Регистрация</a></li>
+          <li><a href="#" data-page="home" data-hash="#landmarks">Достопримечательности</a></li>
+          <li><a href="#" data-page="account">Личный кабинет</a></li>
+          <li><a href="#" data-page="error404">Страница не найдена</a></li>
+        </ul>
+      </nav>
+      <div>
+        <strong>Экскурсии</strong>
+        <ul style="list-style:none;margin-top:0.75rem">
+          <li><a href="#" data-page="excursion">Расписание</a></li>
+          <li><a href="#" data-page="route">Маршрут</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom container">© 2025 «Калмыкия тур» — Герои Великой Отечественной Войны</div>
+  </footer>
+
+  <script>
+const AUTH_STORAGE = 'heroes-users';
+const SESSION_KEY = 'heroes-session';
+
+const DEFAULT_USER = {
+  email: 'family@cosmos.ru',
+  password: 'Heroes2024!',
+  firstName: 'Алексей',
+  lastName: 'Петров',
+  age: 42,
+  gender: 'male',
+  registeredAt: '2024-05-01'
+};
+
+function getUsers() {
+  try {
+    const raw = localStorage.getItem(AUTH_STORAGE);
+    const list = raw ? JSON.parse(raw) : [];
+    const hasDefault = list.some((u) => u.email.toLowerCase() === DEFAULT_USER.email.toLowerCase());
+    if (!hasDefault) {
+      list.unshift(DEFAULT_USER);
+      localStorage.setItem(AUTH_STORAGE, JSON.stringify(list));
+    }
+    return list;
+  } catch {
+    return [DEFAULT_USER];
+  }
+}
+
+function saveUsers(users) {
+  localStorage.setItem(AUTH_STORAGE, JSON.stringify(users));
+}
+
+function registerUser(user) {
+  const users = getUsers();
+  if (users.some((u) => u.email.toLowerCase() === user.email.toLowerCase())) {
+    return { ok: false, message: 'Пользователь с таким e-mail уже зарегистрирован.' };
+  }
+  users.push(user);
+  saveUsers(users);
+  return { ok: true, message: 'Регистрация успешна! Теперь вы можете войти.' };
+}
+
+function login(email, password) {
+  const users = getUsers();
+  const found = users.find(
+    (u) => u.email.toLowerCase() === email.trim().toLowerCase() && u.password === password
+  );
+  if (!found) {
+    return { ok: false, message: 'Неверный e-mail или пароль.' };
+  }
+  const session = {
+    email: found.email,
+    firstName: found.firstName,
+    lastName: found.lastName,
+    age: found.age,
+    gender: found.gender
+  };
+  localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+  return { ok: true, user: session };
+}
+
+function getSession() {
+  try {
+    const raw = localStorage.getItem(SESSION_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+function logout() {
+  localStorage.removeItem(SESSION_KEY);
+}
+
+function isValidEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  return re.test(String(email).trim());
+}
+
+if (typeof module !== 'undefined') module.exports = { getUsers, registerUser, login, getSession, logout, isValidEmail, DEFAULT_USER };
+
+(function () {
+  const STORAGE_KEY = 'heroes-theme';
+  const html = document.documentElement;
+  function getPreferred() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved || 'dark';
+  }
+  window.applyTheme = function applyTheme(theme) {
+    html.setAttribute('data-theme', theme);
+    localStorage.setItem(STORAGE_KEY, theme);
+    document.querySelectorAll('.theme-toggle').forEach((btn) => {
+      btn.textContent = theme === 'dark' ? '☀ Светлая' : '🌙 Тёмная';
+      btn.setAttribute('aria-label', theme === 'dark' ? 'Включить светлую тему' : 'Включить тёмную тему');
+    });
+  };
+  applyTheme(getPreferred());
+  document.querySelectorAll('.theme-toggle').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+    });
+  });
+})();
+
+function showPage(page, opts) {
+  opts = opts || {};
+  const map = { home: 'page-home', registration: 'page-registration', excursion: 'page-excursion', account: 'page-account', route: 'page-route', error404: 'page-error404' };
+  const id = map[page] || 'page-home';
+  document.querySelectorAll('.page-view').forEach(function (el) { el.classList.toggle('active', el.id === id); });
+  if (page === 'account') initAccountPage();
+  if (page === 'route') updateRouteStats();
+  if (opts.theme === 'light' && window.applyTheme) applyTheme('light');
+  if (opts.hash) {
+    setTimeout(function () { var t = document.querySelector(opts.hash); if (t) t.scrollIntoView({ behavior: 'smooth' }); }, 80);
+  } else {
+    window.scrollTo(0, 0);
+  }
+}
+function initRouter() {
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('[data-page]');
+    if (!link) return;
+    e.preventDefault();
+    var opts = {};
+    if (link.dataset.hash) opts.hash = link.dataset.hash;
+    if (link.dataset.setTheme === 'light') opts.theme = 'light';
+    showPage(link.dataset.page, opts);
+  });
+}
+function initAccountPage() {
+  var session = getSession();
+  if (!session) { showPage('home', { hash: '#auth' }); return; }
+  var info = document.getElementById('account-user-info');
+  if (info) {
+    var genderLabel = session.gender === 'female' ? 'женский' : 'мужской';
+    info.innerHTML = '<p><strong>' + session.lastName + ' ' + session.firstName + '</strong></p><p>E-mail: ' + session.email + '</p><p>Возраст: ' + (session.age || '—') + ' · Пол: ' + genderLabel + '</p><p class="form-hint">Данные из регистрации. Тестовый пользователь: family@cosmos.ru</p>';
+  }
+}
+function initBookingTimes() {
+  var sel = document.getElementById('time');
+  if (!sel || sel.options.length > 1) return;
+  for (var h = 9; h <= 21; h++) {
+    var o = document.createElement('option');
+    o.value = h + ':00';
+    o.textContent = h + ':00 – ' + (h + 1) + ':00';
+    sel.appendChild(o);
+  }
+}
+document.getElementById('ageRange') && document.getElementById('ageRange').addEventListener('input', function (e) {
+  var out = document.getElementById('age-range-out');
+  if (out) out.textContent = e.target.value;
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const navToggle = document.querySelector('.nav-toggle');
+  const mainNav = document.querySelector('.main-nav');
+  if (navToggle && mainNav) {
+    navToggle.addEventListener('click', () => {
+      mainNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', mainNav.classList.contains('open'));
+    });
+  }
+
+  initHeroSlider();
+  initReviewSlideset();
+  initLoginForm();
+  initHeroSearch();
+  initSubscribeForm();
+  updateNavForSession();
+});
+
+function initHeroSlider() {
+  const track = document.querySelector('.slider-track');
+  if (!track) return;
+  const slides = track.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.slider-dot');
+  const prev = document.querySelector('.slider-prev');
+  const next = document.querySelector('.slider-next');
+  let index = 0;
+
+  function goTo(i) {
+    index = (i + slides.length) % slides.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((d, j) => d.classList.toggle('active', j === index));
+  }
+
+  prev?.addEventListener('click', () => goTo(index - 1));
+  next?.addEventListener('click', () => goTo(index + 1));
+  dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+  setInterval(() => goTo(index + 1), 7000);
+}
+
+function initReviewSlideset() {
+  const cards = document.querySelectorAll('.review-card');
+  if (cards.length < 2) return;
+  let idx = 0;
+  setInterval(() => {
+    cards[idx].classList.remove('active');
+    idx = (idx + 1) % cards.length;
+    cards[idx].classList.add('active');
+  }, 5000);
+}
+
+function initLoginForm() {
+  const form = document.getElementById('login-form');
+  if (!form) return;
+  const msg = document.getElementById('login-message');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = form.email.value;
+    const password = form.password.value;
+    if (!isValidEmail(email)) {
+      showMsg(msg, 'Введите корректный e-mail (должен содержать @ и домен).', 'error');
+      return;
+    }
+    const result = login(email, password);
+    if (result.ok) {
+      showMsg(msg, 'Вход выполнен! Переход в личный кабинет…', 'success');
+      updateNavForSession();
+      setTimeout(() => { showPage('account'); }, 800);
+    } else {
+      showMsg(msg, result.message, 'error');
+    }
+  });
+}
+
+function initHeroSearch() {
+  const form = document.getElementById('hero-search-form');
+  if (!form) return;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const q = form.querySelector('input').value.trim().toLowerCase();
+    const cards = document.querySelectorAll('.hero-card');
+    let found = 0;
+    cards.forEach((card) => {
+      const name = card.dataset.surname?.toLowerCase() || '';
+      const match = !q || name.includes(q);
+      card.style.display = match ? '' : 'none';
+      if (match) found++;
+    });
+    const hint = document.getElementById('search-result');
+    if (hint) {
+      hint.textContent = q
+        ? found
+          ? `Найдено карточек: ${found}`
+          : 'По вашему запросу ничего не найдено.'
+        : '';
+    }
+  });
+}
+
+function initSubscribeForm() {
+  const form = document.getElementById('subscribe-form');
+  if (!form) return;
+  const msg = document.getElementById('subscribe-message');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = form.email.value;
+    const consent = form.consent.checked;
+    if (!email) {
+      showMsg(msg, 'Укажите e-mail.', 'error');
+      return;
+    }
+    if (!isValidEmail(email)) {
+      showMsg(msg, 'Некорректный e-mail.', 'error');
+      return;
+    }
+    if (!consent) {
+      showMsg(msg, 'Необходимо согласие на обработку персональных данных.', 'error');
+      return;
+    }
+    showMsg(msg, 'Спасибо! Вы подписаны на новости.', 'success');
+    form.reset();
+  });
+}
+
+function updateNavForSession() {
+  const session = getSession();
+  const regLink = document.querySelector('.nav-reg');
+  const logoutLink = document.getElementById('logout-btn');
+  if (session && regLink) regLink.style.display = 'none';
+  if (logoutLink) logoutLink.style.display = session ? '' : 'none';
+}
+
+function showMsg(el, text, type) {
+  if (!el) return;
+  el.textContent = text;
+  el.className = `form-message show ${type}`;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('registration-form');
+  const registerBtn = document.getElementById('register-btn');
+  const pdConsent = document.getElementById('pd-consent');
+  const msg = document.getElementById('reg-message');
+
+  if (!form || !registerBtn) return;
+
+  function updateRegisterButton() {
+    registerBtn.disabled = !pdConsent.checked;
+  }
+
+  pdConsent.addEventListener('change', updateRegisterButton);
+  updateRegisterButton();
+
+  form.addEventListener('input', () => validatePreview(form));
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const result = validateRegistration(form);
+    showRegMessage(msg, result.message, result.type);
+
+    if (!result.valid) return;
+
+    const user = {
+      email: form.email.value.trim(),
+      password: form.password.value,
+      firstName: form.firstName.value.trim(),
+      lastName: form.lastName.value.trim(),
+      age: parseInt(form.ageNumber.value, 10) || parseInt(form.ageRange.value, 10),
+      gender: form.gender.value,
+      registeredAt: new Date().toISOString().slice(0, 10)
+    };
+
+    const reg = registerUser(user);
+    if (reg.ok) {
+      showRegMessage(msg, reg.message + ' Войдите на главной странице.', 'success');
+      form.reset();
+      updateRegisterButton();
+    } else {
+      showRegMessage(msg, reg.message, 'error');
+    }
+  });
+});
+
+function validatePreview(form) {
+  const email = form.email?.value || '';
+  const emailHint = document.getElementById('email-hint');
+  if (emailHint) {
+    if (!email) emailHint.textContent = '';
+    else if (isValidEmail(email)) emailHint.textContent = '✓ E-mail указан корректно';
+    else emailHint.textContent = '✗ Укажите e-mail в формате name@domain.ru';
+    emailHint.style.color = isValidEmail(email) ? 'var(--success)' : 'var(--error)';
+  }
+}
+
+function validateRegistration(form) {
+  const required = [
+    'email', 'firstName', 'lastName', 'password', 'password2', 'gender'
+  ];
+
+  for (const name of required) {
+    const el = form[name];
+    if (!el || (el.type === 'radio' && !form.querySelector(`input[name="${name}"]:checked`))) {
+      if (el?.type !== 'radio' && (!el || !String(el.value).trim())) {
+        return { valid: false, type: 'error', message: 'Заполните все обязательные поля.' };
+      }
+    }
+    if (el && el.type !== 'radio' && el.hasAttribute('required') && !String(el.value).trim()) {
+      return { valid: false, type: 'error', message: 'Заполните все обязательные поля.' };
+    }
+  }
+
+  const genderChecked = form.querySelector('input[name="gender"]:checked');
+  if (!genderChecked) {
+    return { valid: false, type: 'error', message: 'Укажите пол.' };
+  }
+
+  if (!isValidEmail(form.email.value)) {
+    return { valid: false, type: 'error', message: 'Некорректный e-mail. Адрес должен содержать символ @ и домен (например, user@mail.ru).' };
+  }
+
+  const ageNum = parseInt(form.ageNumber.value, 10);
+  const ageRange = parseInt(form.ageRange.value, 10);
+  if ((!ageNum || ageNum < 1) && (!ageRange || ageRange < 1)) {
+    return { valid: false, type: 'error', message: 'Укажите возраст (числом или из списка).' };
+  }
+
+  if (form.password.value.length < 6) {
+    return { valid: false, type: 'error', message: 'Пароль должен быть не менее 6 символов.' };
+  }
+
+  if (form.password.value !== form.password2.value) {
+    return { valid: false, type: 'error', message: 'Пароли не совпадают.' };
+  }
+
+  if (!form.pdConsent.checked) {
+    return { valid: false, type: 'error', message: 'Необходимо согласие на обработку персональных данных.' };
+  }
+
+  const photo = form.photo?.files?.[0];
+  if (!photo) {
+    return { valid: false, type: 'error', message: 'Загрузите семейную фотографию.' };
+  }
+
+  return { valid: true, type: 'success', message: 'Данные корректны. Регистрация…' };
+}
+
+function showRegMessage(el, text, type) {
+  if (!el) return;
+  el.textContent = text;
+  el.className = `form-message show ${type}`;
+}
+
+// Demo states for assignment screenshots
+function showValidationDemo(state) {
+  const msg = document.getElementById('reg-message');
+  const texts = {
+    success: 'Все поля заполнены корректно. Регистрация возможна.',
+    error: 'Ошибка: проверьте e-mail, пароли и обязательные поля.',
+    empty: 'Заполните все обязательные поля.'
+  };
+  showRegMessage(msg, texts[state] || texts.error, state === 'success' ? 'success' : 'error');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('logout-btn')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    logout();
+    updateNavForSession();
+    showPage('home');
+  });
+
+  const form = document.getElementById('booking-form');
+  const msg = document.getElementById('booking-message');
+  if (!form) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const excursion = form.excursion.value;
+    const date = form.date.value;
+    const time = form.time.value;
+    const count = parseInt(form.count.value, 10);
+
+    if (!excursion || !date || !time || !count || count < 1) {
+      showMsg(msg, 'Заполните все поля записи.', 'error');
+      return;
+    }
+
+    if (date !== '2024-07-08') {
+      showMsg(msg, 'Доступна только дата: 8 июля 2024 г.', 'error');
+      return;
+    }
+
+    const bookings = JSON.parse(localStorage.getItem('heroes-bookings') || '[]');
+    bookings.push({
+      email: session.email,
+      excursion,
+      date,
+      time,
+      count,
+      at: new Date().toISOString()
+    });
+    localStorage.setItem('heroes-bookings', JSON.stringify(bookings));
+    showMsg(msg, `Запись оформлена: «${excursion}», ${date}, ${time}, участников: ${count}.`, 'success');
+    updateRouteStats();
+  });
+});
+
+function showMsg(el, text, type) {
+  if (!el) return;
+  el.textContent = text;
+  el.className = `form-message show ${type}`;
+}
+
+function updateRouteStats() {
+  const bookings = JSON.parse(localStorage.getItem('heroes-bookings') || '[]');
+  const total = bookings.reduce((s, b) => s + (b.count || 0), 0) + 127;
+  document.querySelectorAll('[data-visitors]').forEach((el) => {
+    el.textContent = total;
+  });
+}
+
+const EXCURSIONS = [
+  'Монумент Победы на Поклонной горе',
+  'Музей Великой Отечественной войны',
+  'Главный храм Вооружённых сил России',
+  'Парковая аллея Героев',
+  'Фонтан «Слёзы горюют»',
+  'Триумфальная арка'
+];
+
+const HOURS = [];
+for (let h = 9; h <= 21; h++) {
+  HOURS.push({ from: h, to: h + 1, label: `${h}:00–${h + 1}:00` });
+}
+
+function seededRandom(seed) {
+  const x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+
+function buildSchedule() {
+  const tbody = document.getElementById('schedule-body');
+  if (!tbody || tbody.children.length) return;
+
+  EXCURSIONS.forEach((name, row) => {
+    const tr = document.createElement('tr');
+    const th = document.createElement('th');
+    th.textContent = name;
+    tr.appendChild(th);
+
+    HOURS.forEach((slot, col) => {
+      const td = document.createElement('td');
+      const seed = row * 100 + col;
+      const r = seededRandom(seed);
+      let places;
+      let cls = 'slot-cell ';
+
+      if (r < 0.15) {
+        places = 0;
+        cls += 'full';
+      } else if (r < 0.35) {
+        places = Math.floor(r * 5) + 1;
+        cls += 'low';
+      } else {
+        places = Math.floor(r * 12) + 3;
+        cls += 'available';
+      }
+
+      const cell = document.createElement('span');
+      cell.className = cls;
+      cell.textContent = places === 0 ? '—' : places;
+      cell.title = places === 0 ? 'Регистрация завершена' : `Свободно мест: ${places}`;
+      td.appendChild(cell);
+      tr.appendChild(td);
+    });
+
+    tbody.appendChild(tr);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  initRouter();
+  initBookingTimes();
+  buildSchedule();
+  updateRouteStats();
+  updateNavForSession();
+  showPage('home');
+});
+  </script>
+</body>
+</html>
